@@ -2,6 +2,8 @@
 
 ![External Terminal Launcher](banners/external-terminal.png)
 
+[![JetBrains Marketplace](https://img.shields.io/jetbrains/plugin/v/32357-external-terminal-launcher.svg)](https://plugins.jetbrains.com/plugin/32357-external-terminal-launcher)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/32357-external-terminal-launcher.svg)](https://plugins.jetbrains.com/plugin/32357-external-terminal-launcher)
 [![Build](https://github.com/jeffersongoncalves/external-terminal-plugin/actions/workflows/build.yml/badge.svg)](https://github.com/jeffersongoncalves/external-terminal-plugin/actions/workflows/build.yml)
 [![Release](https://img.shields.io/github/v/release/jeffersongoncalves/external-terminal-plugin?sort=semver)](https://github.com/jeffersongoncalves/external-terminal-plugin/releases)
 [![License](https://img.shields.io/github/license/jeffersongoncalves/external-terminal-plugin)](LICENSE)
@@ -9,6 +11,11 @@
 A JetBrains IDE plugin (PhpStorm and other IntelliJ-based IDEs) that opens an **external
 terminal emulator** at your project's root directory — from a top-toolbar button or a Tools
 menu action. Terminal-agnostic by design, starting with [Warp](https://www.warp.dev).
+
+## Install
+
+Install from the [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/32357-external-terminal-launcher)
+— in the IDE: **Settings → Plugins → Marketplace**, search for *External Terminal Launcher*.
 
 ## Supported terminals
 
