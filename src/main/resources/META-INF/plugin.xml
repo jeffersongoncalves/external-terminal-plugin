@@ -1,0 +1,70 @@
+<idea-plugin url="https://github.com/jeffersongoncalves/external-terminal-plugin">
+    <id>com.jeffersongoncalves.externalterminal</id>
+    <name>External Terminal Launcher</name>
+    <vendor email="jefferson@jeffersongoncalves.com"
+            url="https://github.com/jeffersongoncalves">
+        Jefferson Goncalves
+    </vendor>
+
+    <description><![CDATA[
+    <h2>External Terminal Launcher — Open your favorite terminal from the IDE</h2>
+    <p>Adds a top-toolbar button (and a Tools menu action) that opens an external terminal
+    emulator at your project's root directory. Built terminal-agnostic, starting with
+    <b>Warp</b> and growing from there.</p>
+
+    <h3>Supported terminals</h3>
+    <ul>
+        <li><b>Warp</b> — Windows, macOS, Linux</li>
+        <li><b>Windows Terminal</b> — Windows</li>
+        <li><b>WezTerm</b> — Windows, macOS, Linux</li>
+        <li><b>Alacritty</b> — Windows, macOS, Linux</li>
+        <li><b>kitty</b> — macOS, Linux</li>
+    </ul>
+
+    <h3>Features</h3>
+    <ul>
+        <li><b>One-click launch</b> — toolbar button opens the terminal at the project root</li>
+        <li><b>Tab reuse</b> — opens a new tab in an existing window when the terminal supports it</li>
+        <li><b>Custom executable path</b> — point each terminal at a non-standard install location</li>
+        <li><b>Bindable</b> — assign your own shortcut in Settings → Keymap (no default binding)</li>
+    </ul>
+
+    <h3>Setup</h3>
+    <ol>
+        <li>Open <b>Settings → Tools → External Terminal</b></li>
+        <li>Pick your terminal and (optionally) a custom executable path</li>
+        <li>Click the toolbar button to launch</li>
+    </ol>
+    ]]></description>
+
+    <depends>com.intellij.modules.platform</depends>
+
+    <resource-bundle>messages.ExternalTerminalBundle</resource-bundle>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <applicationService
+            serviceImplementation="com.jeffersongoncalves.externalterminal.settings.ExternalTerminalSettings"/>
+
+        <applicationConfigurable
+            parentId="tools"
+            instance="com.jeffersongoncalves.externalterminal.settings.ExternalTerminalConfigurable"
+            id="com.jeffersongoncalves.externalterminal.settings.ExternalTerminalConfigurable"
+            displayName="External Terminal"/>
+
+        <notificationGroup
+            id="ExternalTerminalLauncher"
+            displayType="BALLOON"/>
+    </extensions>
+
+    <actions>
+        <action
+            id="ExternalTerminal.Open"
+            class="com.jeffersongoncalves.externalterminal.actions.OpenExternalTerminalAction"
+            text="Open External Terminal"
+            description="Open the configured external terminal at the project root"
+            icon="/icons/terminal.svg">
+            <add-to-group group-id="MainToolbarRight" anchor="first"/>
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+        </action>
+    </actions>
+</idea-plugin>
