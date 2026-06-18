@@ -3,6 +3,7 @@ package com.jeffersongoncalves.externalterminal.terminal
 import com.jeffersongoncalves.externalterminal.OperatingSystem
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNull
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class TerminalProviderTest {
@@ -96,5 +97,13 @@ class TerminalProviderTest {
         assertEquals("warp", TerminalRegistry.defaultProviderId)
         assertEquals("warp", TerminalRegistry.byIdOrDefault("does-not-exist").id)
         assertEquals("wezterm", TerminalRegistry.byIdOrDefault("wezterm").id)
+    }
+
+    @Test
+    fun `installed providers is a subset preserving registry order`() {
+        val installed = TerminalRegistry.installedProviders(OperatingSystem.LINUX)
+        assertTrue(TerminalRegistry.providers.containsAll(installed))
+        val order = TerminalRegistry.providers.filter { it in installed }
+        assertEquals(order, installed)
     }
 }

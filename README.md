@@ -1,5 +1,11 @@
 # External Terminal Launcher
 
+![External Terminal Launcher](banners/external-terminal.png)
+
+[![Build](https://github.com/jeffersongoncalves/external-terminal-plugin/actions/workflows/build.yml/badge.svg)](https://github.com/jeffersongoncalves/external-terminal-plugin/actions/workflows/build.yml)
+[![Release](https://img.shields.io/github/v/release/jeffersongoncalves/external-terminal-plugin?sort=semver)](https://github.com/jeffersongoncalves/external-terminal-plugin/releases)
+[![License](https://img.shields.io/github/license/jeffersongoncalves/external-terminal-plugin)](LICENSE)
+
 A JetBrains IDE plugin (PhpStorm and other IntelliJ-based IDEs) that opens an **external
 terminal emulator** at your project's root directory — from a top-toolbar button or a Tools
 menu action. Terminal-agnostic by design, starting with [Warp](https://www.warp.dev).
@@ -21,6 +27,10 @@ menu action. Terminal-agnostic by design, starting with [Warp](https://www.warp.
    custom executable path.
 3. Click the terminal button in the top toolbar (or **Tools → Open External Terminal**).
 
+The terminal dropdown only lists emulators detected on the current system (plus your saved
+choice). Set a custom executable path to surface a terminal installed in a non-standard
+location.
+
 No keyboard shortcut is bound by default — assign one under **Settings → Keymap** by
 searching for *Open External Terminal*.
 
@@ -34,9 +44,11 @@ unit-tested per terminal and per OS.
 
 ### A note on Warp
 
-Warp's `warp://` URI scheme cannot carry a working directory, so the plugin invokes the
-binary with the directory as a positional argument instead. When Warp is already running it
-reuses the existing window as a new tab on its own — there is no explicit flag for it.
+On macOS/Linux Warp's `warp://` URI scheme cannot carry a working directory, so the plugin
+invokes the binary with the directory as a positional argument instead. On Windows the binary
+parses its first argument as a URI — a bare path like `C:\foo` is rejected — so there the
+plugin passes Warp's documented `warp://action/new_tab?path=` deep link. When Warp is already
+running it reuses the existing window as a new tab on its own — there is no explicit flag for it.
 
 ## Development
 

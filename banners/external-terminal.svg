@@ -1,0 +1,77 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="78%" cy="42%" r="55%">
+      <stop offset="0%" stop-color="#1a1407"/>
+      <stop offset="100%" stop-color="#0a0a0b"/>
+    </radialGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+    <linearGradient id="cardbg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#161618"/>
+      <stop offset="100%" stop-color="#0e0e10"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#0a0a0b"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <rect width="1200" height="630" fill="url(#grid)"/>
+
+  <!-- eyebrow -->
+  <circle cx="84" cy="70" r="5" fill="#F5A623"/>
+  <text x="98" y="76" font-family="Arial, sans-serif" font-size="15" letter-spacing="3" fill="#9a9a9f" font-weight="600">JETBRAINS PLUGIN</text>
+
+  <!-- title -->
+  <text x="80" y="275" font-family="Arial, sans-serif" font-size="96" font-weight="800" fill="#ffffff">External</text>
+  <text x="80" y="370" font-family="Arial, sans-serif" font-size="96" font-weight="800" fill="#ffffff">Terminal</text>
+
+  <!-- subtitle -->
+  <text x="84" y="425" font-family="Arial, sans-serif" font-size="26" font-weight="700" fill="#F5A623">Open your terminal from PhpStorm</text>
+  <text x="84" y="466" font-family="Arial, sans-serif" font-size="19" fill="#b8b8bd">One click launches Warp, Windows Terminal, WezTerm,</text>
+  <text x="84" y="494" font-family="Arial, sans-serif" font-size="19" fill="#b8b8bd">Alacritty or kitty at the project root.</text>
+
+  <!-- badges -->
+  <g font-family="Arial, sans-serif" font-size="15" fill="#cfcfd4" font-weight="600">
+    <rect x="84" y="548" width="150" height="38" rx="19" fill="#161618" stroke="#2a2a2e"/>
+    <text x="159" y="572" text-anchor="middle">PhpStorm 2024.3+</text>
+    <rect x="244" y="548" width="92" height="38" rx="19" fill="#161618" stroke="#2a2a2e"/>
+    <text x="290" y="572" text-anchor="middle">Kotlin</text>
+    <rect x="346" y="548" width="92" height="38" rx="19" fill="#161618" stroke="#2a2a2e"/>
+    <text x="392" y="572" text-anchor="middle">JDK 17</text>
+    <rect x="448" y="548" width="74" height="38" rx="19" fill="#161618" stroke="#2a2a2e"/>
+    <text x="485" y="572" text-anchor="middle">MIT</text>
+  </g>
+
+  <text x="1120" y="596" text-anchor="end" font-family="Arial, sans-serif" font-size="15" fill="#5a5a60">@jeffersongoncalves</text>
+
+  <!-- mock card -->
+  <rect x="680" y="128" width="458" height="374" rx="16" fill="url(#cardbg)" stroke="#2a2a2e"/>
+  <text x="706" y="170" font-family="Arial, sans-serif" font-size="13" letter-spacing="2" fill="#7a7a80" font-weight="700">EXTERNAL TERMINAL — SETTINGS</text>
+  <line x1="706" y1="186" x2="1112" y2="186" stroke="#2a2a2e"/>
+
+  <!-- terminal picker -->
+  <text x="706" y="222" font-family="Arial, sans-serif" font-size="12" letter-spacing="1" fill="#7a7a80" font-weight="600">TERMINAL</text>
+  <rect x="706" y="232" width="406" height="44" rx="9" fill="#0c0c0e" stroke="#F5A623" stroke-width="1.5"/>
+  <circle cx="730" cy="254" r="5" fill="#34D399"/>
+  <text x="746" y="260" font-family="Consolas, monospace" font-size="17" fill="#e6e6ea">Warp</text>
+  <text x="1086" y="260" font-family="Arial, sans-serif" font-size="13" fill="#7a7a80">▾</text>
+
+  <!-- detected list -->
+  <text x="706" y="306" font-family="Arial, sans-serif" font-size="12" letter-spacing="1" fill="#7a7a80" font-weight="600">DETECTED ON THIS SYSTEM</text>
+  <rect x="706" y="316" width="406" height="128" rx="9" fill="#0c0c0e" stroke="#2a2a2e"/>
+  <circle cx="728" cy="342" r="4" fill="#34D399"/>
+  <text x="744" y="348" font-family="Consolas, monospace" font-size="15" fill="#e6e6ea">Warp</text>
+  <text x="1092" y="348" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#5a5a60">tab reuse</text>
+  <circle cx="728" cy="378" r="4" fill="#34D399"/>
+  <text x="744" y="384" font-family="Consolas, monospace" font-size="15" fill="#e6e6ea">Windows Terminal</text>
+  <text x="1092" y="384" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#5a5a60">wt -w 0 nt</text>
+  <circle cx="728" cy="414" r="4" fill="#34D399"/>
+  <text x="744" y="420" font-family="Consolas, monospace" font-size="15" fill="#e6e6ea">WezTerm</text>
+  <text x="1092" y="420" text-anchor="end" font-family="Arial, sans-serif" font-size="12" fill="#5a5a60">cli spawn</text>
+
+  <!-- launch button -->
+  <rect x="706" y="460" width="180" height="42" rx="9" fill="#F5A623"/>
+  <text x="796" y="486" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="700" fill="#1a1206">Open Terminal</text>
+  <rect x="898" y="460" width="214" height="42" rx="9" fill="#0c0c0e" stroke="#2a2a2e"/>
+  <text x="916" y="486" font-family="Consolas, monospace" font-size="14" fill="#b8b8bd">~/projects/my-app</text>
+</svg>

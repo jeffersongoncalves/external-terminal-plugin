@@ -7,6 +7,7 @@ import com.intellij.openapi.ui.TextFieldWithBrowseButton
 import com.intellij.ui.components.JBCheckBox
 import com.intellij.ui.dsl.builder.AlignX
 import com.intellij.ui.dsl.builder.panel
+import com.jeffersongoncalves.externalterminal.OperatingSystem
 import com.jeffersongoncalves.externalterminal.terminal.TerminalProvider
 import com.jeffersongoncalves.externalterminal.terminal.TerminalRegistry
 import javax.swing.DefaultComboBoxModel
@@ -34,7 +35,7 @@ class ExternalTerminalConfigurable : Configurable {
             workingPaths[provider.id] = settings.executablePath(provider.id).orEmpty()
         }
 
-        terminalCombo = ComboBox(DefaultComboBoxModel(TerminalRegistry.providers.toTypedArray())).apply {
+        terminalCombo = ComboBox(DefaultComboBoxModel(shownProviders().toTypedArray())).apply {
             renderer = ListCellRenderer { list, value, index, selected, focused ->
                 javax.swing.DefaultListCellRenderer().getListCellRendererComponent(
                     list, value?.displayName ?: "", index, selected, focused,
@@ -63,6 +64,9 @@ class ExternalTerminalConfigurable : Configurable {
         return panel {
             row("Terminal:") {
                 cell(terminalCombo).align(AlignX.LEFT)
+            }
+            row {
+                comment("Only terminals detected on this system are listed.")
             }
             row {
                 cell(reuseTabCheck)
@@ -109,5 +113,19 @@ class ExternalTerminalConfigurable : Configurable {
         if (::pathField.isInitialized) {
             workingPaths[shownTerminalId] = pathField.text.trim()
         }
+    }
+
+    /**
+     * Only terminals detected on this OS are offered, plus the currently-selected one and any
+     * with a saved custom path (so an existing choice is never silently dropped). Falls back to
+     * the full catalogue when nothing is detected, so the user can still point at a custom path.
+     */
+    private fun shownProviders(): List<TerminalProvider> {
+        val os = OperatingSystem.current()
+        return TerminalRegistry.providers.filter { p ->
+            p.id == settings.selectedTerminalId ||
+                settings.executablePath(p.id) != null ||
+                TerminalRegistry.installedProviders(os).any { it.id == p.id }
+        }.ifEmpty { TerminalRegistry.providers }
     }
 }
