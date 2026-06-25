@@ -26,7 +26,7 @@ class WarpProvider : TerminalProvider {
         reuseTab: Boolean,
     ): LaunchSpec? = when (os) {
         OperatingSystem.WINDOWS -> LaunchSpec(
-            executable = executablePath ?: WINDOWS_DEFAULT,
+            executable = executablePath ?: resolveWindowsExecutable(),
             args = listOf(windowsLaunchUri(workingDir)),
         )
 
@@ -45,11 +45,36 @@ class WarpProvider : TerminalProvider {
     }
 
     override fun detectionCandidates(os: OperatingSystem): List<String> = when (os) {
-        OperatingSystem.WINDOWS -> listOf(WINDOWS_DEFAULT, "warp.exe", "warp")
+        OperatingSystem.WINDOWS -> windowsCandidates()
         OperatingSystem.MAC -> listOf("/Applications/Warp.app")
         OperatingSystem.LINUX -> listOf("warp-terminal")
         OperatingSystem.UNKNOWN -> emptyList()
     }
+
+    /**
+     * Windows install locations, in priority order: the per-machine `Program Files` path and the
+     * per-user `%LOCALAPPDATA%\Programs\Warp` path (Warp's default — it installs per-user), then
+     * the bare command names for a PATH lookup.
+     */
+    private fun windowsCandidates(): List<String> = buildList {
+        add(WINDOWS_DEFAULT)
+        windowsLocalAppDataDefault()?.let { add(it) }
+        add("warp.exe")
+        add("warp")
+    }
+
+    private fun windowsLocalAppDataDefault(): String? {
+        val localAppData = System.getenv("LOCALAPPDATA")?.takeIf { it.isNotBlank() } ?: return null
+        return "${localAppData.trimEnd('\\')}\\Programs\\Warp\\warp.exe"
+    }
+
+    /**
+     * The executable to spawn when the user has not set an override: the first detection candidate
+     * that actually resolves on this host, falling back to [WINDOWS_DEFAULT] when none do.
+     */
+    private fun resolveWindowsExecutable(): String =
+        windowsCandidates().firstNotNullOfOrNull { ExecutableResolver.resolve(it, OperatingSystem.WINDOWS) }
+            ?: WINDOWS_DEFAULT
 
     /**
      * Warp on Windows parses its first argument as a URI. Use the documented deep link and

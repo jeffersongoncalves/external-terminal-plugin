@@ -22,6 +22,16 @@ class TerminalProviderTest {
     }
 
     @Test
+    fun `warp windows detection includes per-user LOCALAPPDATA install`() {
+        val candidates = WarpProvider().detectionCandidates(OperatingSystem.WINDOWS)
+        assertTrue(candidates.contains(WarpProvider.WINDOWS_DEFAULT))
+        val localAppData = System.getenv("LOCALAPPDATA")
+        if (!localAppData.isNullOrBlank()) {
+            assertTrue(candidates.any { it.endsWith("\\Programs\\Warp\\warp.exe") })
+        }
+    }
+
+    @Test
     fun `warp honours custom executable path`() {
         val custom = "D:\\tools\\warp.exe"
         val spec = WarpProvider().launchSpec(OperatingSystem.WINDOWS, custom, dir, reuseTab = false)!!
