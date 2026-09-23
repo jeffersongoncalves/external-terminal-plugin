@@ -1,8 +1,8 @@
+![External Terminal Launcher](banners/external-terminal.png)
+
 # External Terminal Launcher
 
 [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-support-FFDD00?style=flat-square&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/jeffersongoncalves)
-
-![External Terminal Launcher](banners/external-terminal.png)
 
 [![JetBrains Marketplace](https://img.shields.io/jetbrains/plugin/v/32357-external-terminal-launcher.svg)](https://plugins.jetbrains.com/plugin/32357-external-terminal-launcher)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/32357-external-terminal-launcher.svg)](https://plugins.jetbrains.com/plugin/32357-external-terminal-launcher)
